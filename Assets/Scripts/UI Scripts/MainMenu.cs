@@ -50,7 +50,11 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level1");
+        FindObjectOfType<AudioManager>().Stop("Menu1");
+        int rand = Random.Range(1, 7);
+        FindObjectOfType<AudioManager>().Play("Rock" + rand.ToString());
+        SceneManager.LoadScene("MainLevel");
+
     }
 
     public void OpenURL()
@@ -79,4 +83,19 @@ public class MainMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
     }
+
+    public void ChangePinSpeed(float val)
+    {
+        Pin.speed = val;
+    }
+    public void ChangeRotatorSpeed(float val)
+    {
+        Rotator.speed = val;
+    }
+
+    public void SetUserName(string username)
+    {
+        PlayerPrefs.SetString("UserName", username);
+    }
+
 }
